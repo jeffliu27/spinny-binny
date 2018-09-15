@@ -20,6 +20,7 @@ namespace Game
 		void UpdateObstacles(float dt);
 		void UpdatePlayerDying();
 		void SpawnNewRandomObstacles();
+		void SpawnNewRandomTrash();
 		void SpawnNewRandomTiledObstacles();
 		void SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size);
 
