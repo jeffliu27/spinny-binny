@@ -17,20 +17,14 @@ namespace Game
 
 		//Temp - for nice architecture this should be within some sort of IUpdatable interface that GameEngine handles (so that not only entities can be updated)
 		void Update();
-		void UpdateObstacles(float dt);
+		void UpdateProjectiles(float dt);
 		void UpdatePlayerDying();
-		void SpawnNewRandomObstacles();
-		void SpawnNewRandomTiledObstacles();
-		void SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size);
+		void SpawnNewRandomProjectiles();
+		void SpawnNewProjectile(const sf::Vector2f& pos, const sf::Vector2f& size);
 
 		bool IsGameOver() const { return m_isGameOver; }		
 
 	protected:
-		//Placeholder temp - should go to helpers or smth.
-		float RandomFloatRange(float a, float b)
-		{
-			return ((b - a) * ((float)rand() / RAND_MAX)) + a;
-		}
 
 		void CreateBackGround();
 		void UpdateBackGround();
@@ -38,8 +32,8 @@ namespace Game
 		PlayerEntity* m_player;
 		GameEngine::Entity* m_backGround;
 
-		std::vector<GameEngine::Entity*> m_obstacles;
-		float m_lastObstacleSpawnTimer;
+		std::vector<GameEngine::Entity*> m_projectiles;
+		float m_lastProjectileSpawnTimer;
 		bool  m_isGameOver;
 	};
 }

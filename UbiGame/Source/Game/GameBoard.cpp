@@ -3,14 +3,15 @@
 #include "GameEngine\GameEngineMain.h"
 #include "GameEngine\EntitySystem\Components\CollidableComponent.h"
 #include "GameEngine\EntitySystem\Components\SpriteRenderComponent.h"
+#include "GameEngine\Helper\MathHelpers.h"
 #include "GameEngine\Util\CameraManager.h"
 #include "Game\GameEntities\PlayerEntity.h"
-#include "Game\GameEntities\ObstacleEntity.h"
+#include "Game\GameEntities\ProjectileEntity.h"
 
 using namespace Game;
 
 GameBoard::GameBoard()
-	: m_lastObstacleSpawnTimer(0.f)
+	: m_lastProjectileSpawnTimer(0.f)
 	, m_isGameOver(false)
 	, m_player(nullptr)
 	, m_backGround(nullptr)
@@ -41,35 +42,35 @@ void GameBoard::Update()
 	float dt = GameEngine::GameEngineMain::GetInstance()->GetTimeDelta();
 	if (!m_isGameOver)
 	{
-		m_lastObstacleSpawnTimer -= dt;
-		if (m_lastObstacleSpawnTimer <= 0.f)
+		m_lastProjectileSpawnTimer -= dt;
+		if (m_lastProjectileSpawnTimer <= 0.f)
 		{
-			//SpawnNewRandomObstacles();
-			SpawnNewRandomTiledObstacles();
+			SpawnNewRandomProjectiles();
+			// SpawnNewRandomTiledObstacles();
 		}
 
-		UpdateObstacles(dt);
+		UpdateProjectiles(dt);
 		UpdateBackGround();
 		UpdatePlayerDying();
 	}		
 }
 
 
-void GameBoard::UpdateObstacles(float dt)
+void GameBoard::UpdateProjectiles(float dt)
 {
-	static float obstacleSpeed = 100.f;
 	
-	for (std::vector<GameEngine::Entity*>::iterator it = m_obstacles.begin(); it != m_obstacles.end();)
+	for (std::vector<GameEngine::Entity*>::iterator it = m_projectiles.begin(); it != m_projectiles.end();)
 	{
-		GameEngine::Entity* obstacle = (*it);
-		sf::Vector2f currPos = obstacle->GetPos();
-		currPos.x -= obstacleSpeed * dt;
-		obstacle->SetPos(currPos);
+		GameEngine::Entity* projectile = (*it);
+		projectile->Update();
+		//sf::Vector2f currPos = obstacle->GetPos();
+		//currPos.x -= obstacleSpeed * dt;
+		//obstacle->SetPos(currPos);
 		//If we are to remove ourselves
-		if (currPos.x < -50.f)
+		if (projectile->GetPos().x < -50.f)
 		{
-			GameEngine::GameEngineMain::GetInstance()->RemoveEntity(obstacle);
-			it = m_obstacles.erase(it);
+			GameEngine::GameEngineMain::GetInstance()->RemoveEntity(projectile);
+			it = m_projectiles.erase(it);
 		}
 		else
 		{
@@ -94,8 +95,9 @@ void GameBoard::UpdatePlayerDying()
 }
 
 
-void GameBoard::SpawnNewRandomObstacles()
+void GameBoard::SpawnNewRandomProjectiles()
 {
+	if (m_projectiles.size() > 0) return;
 	static float minNextSpawnTime = 0.3f;
 	static float maxNextSpawnTime = 0.7f;
 
@@ -109,16 +111,16 @@ void GameBoard::SpawnNewRandomObstacles()
 	static float minObstacleWidth = 20.f;
 	static float maxObstacleWidth = 40.f;
 
-	sf::Vector2f pos = sf::Vector2f(RandomFloatRange(minObstacleXPos, maxObstacleXPos), RandomFloatRange(minObstacleYPos, maxObstacleYPos));
-	sf::Vector2f size = sf::Vector2f(RandomFloatRange(minObstacleWidth, maxObstacleWidth), RandomFloatRange(minObstacleHeight, maxObstacleHeight));
+	sf::Vector2f pos = sf::Vector2f(MathHelpers::RandFloatIn(minObstacleXPos, maxObstacleXPos), MathHelpers::RandFloatIn(minObstacleYPos, maxObstacleYPos));
+	sf::Vector2f size = sf::Vector2f(MathHelpers::RandFloatIn(minObstacleWidth, maxObstacleWidth), MathHelpers::RandFloatIn(minObstacleHeight, maxObstacleHeight));
 
-	SpawnNewObstacle(pos, size);
+	SpawnNewProjectile(pos, size);
 
-	m_lastObstacleSpawnTimer = RandomFloatRange(minNextSpawnTime, maxNextSpawnTime);
+	m_lastProjectileSpawnTimer = MathHelpers::RandFloatIn(minNextSpawnTime, maxNextSpawnTime);
 }
 
 
-void GameBoard::SpawnNewRandomTiledObstacles()
+/* void GameBoard::SpawnNewRandomTiledObstacles()
 {
 	static int minObstacleCount = 2;
 	static int maxObstacleCount = 7;
@@ -131,28 +133,28 @@ void GameBoard::SpawnNewRandomTiledObstacles()
 	static float minObstacleYPos = 20.f;
 	static float maxObstacleYPos = 450.f;
 
-	sf::Vector2f pos = sf::Vector2f(RandomFloatRange(minObstacleXPos, maxObstacleXPos), RandomFloatRange(minObstacleYPos, maxObstacleYPos));	
+	sf::Vector2f pos = sf::Vector2f(MathHelpers::RandFloatIn(minObstacleXPos, maxObstacleXPos), MathHelpers::RandFloatIn(minObstacleYPos, maxObstacleYPos));	
 	sf::Vector2f size = sf::Vector2f(32.f, 32.f);
 
-	int obstacleCount = (int)RandomFloatRange((float)minObstacleCount, (float)maxObstacleCount);
+	int obstacleCount = (int)MathHelpers::RandFloatIn((float)minObstacleCount, (float)maxObstacleCount);
 	for (int a = 0; a < obstacleCount; ++a)
 	{
 		SpawnNewObstacle(pos, size);
 		pos.y += size.y;
 	}
 
-	m_lastObstacleSpawnTimer = RandomFloatRange(minNextSpawnTime, maxNextSpawnTime);
-}
+	m_lastObstacleSpawnTimer = MathHelpers::RandFloatIn(minNextSpawnTime, maxNextSpawnTime);
+} */
 
 
-void GameBoard::SpawnNewObstacle(const sf::Vector2f& pos, const sf::Vector2f& size)
+void GameBoard::SpawnNewProjectile(const sf::Vector2f& pos, const sf::Vector2f& size)
 {
-	ObstacleEntity* obstacle = new ObstacleEntity();
-	GameEngine::GameEngineMain::GetInstance()->AddEntity(obstacle);
-	obstacle->SetPos(pos);
-	obstacle->SetSize(sf::Vector2f(size.x, size.y));
+	ProjectileEntity* projectile = new ProjectileEntity();
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(projectile);
+	projectile->SetPos(pos);
+	projectile->SetSize(sf::Vector2f(size.x, size.y));
 
-	m_obstacles.push_back(obstacle);
+	m_projectiles.push_back(projectile);
 }
 
 

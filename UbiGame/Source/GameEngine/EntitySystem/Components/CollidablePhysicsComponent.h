@@ -14,6 +14,17 @@ namespace GameEngine
 		virtual void OnRemoveFromWorld() override;
 
 		virtual void Update() override;
+
+		bool UsesGravity() const { return m_useGravity; }
+		bool GetMass() const { return m_mass; }
+
+		void SetGravityUsage(bool useGravity) { m_useGravity = useGravity; }
+		void SetMass(double mass) { m_mass = mass; }
+
+	private:
+		bool m_useGravity = true;
+		double m_mass = 1.0;
+
 	};
 }
 

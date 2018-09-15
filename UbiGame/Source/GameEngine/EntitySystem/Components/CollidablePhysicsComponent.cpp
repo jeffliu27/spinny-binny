@@ -1,5 +1,6 @@
 #include "CollidablePhysicsComponent.h"
 
+#include "GameEngine/GameEngineMain.h"
 #include "GameEngine/Util/CollisionManager.h"
 #include "GameEngine/EntitySystem/Entity.h"
 
@@ -33,6 +34,15 @@ void CollidablePhysicsComponent::OnRemoveFromWorld()
 
 void CollidablePhysicsComponent::Update()
 {
+	if (m_useGravity) {
+		sf::Vector2f grav = GameEngine::GameEngineMain::GetInstance()->GravityAt(GetEntity()->GetPos());
+		grav.x *= m_mass;
+		grav.y *= m_mass;
+		GetEntity()->SetPos(sf::Vector2f(
+			GetEntity()->GetPos().x + grav.x,
+			GetEntity()->GetPos().y + grav.y
+		));
+	}
 	//For the time being just a simple intersection check that moves the entity out of all potential intersect boxes
 	std::vector<CollidableComponent*>& collidables = CollisionManager::GetInstance()->GetCollidables();
 

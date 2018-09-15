@@ -21,7 +21,7 @@ namespace GameEngine
 		static float		   GetGameTime() { return sm_gameClock.getElapsedTime().asSeconds(); }
 
 		sf::RenderWindow* GetRenderWindow() const { return m_renderWindow; }
-		void Update();		
+		void Update();
 		void SetRenderTarget(sf::RenderTarget* target) { m_renderTarget = target; }
 
 		void AddEntity(Entity* entity);
@@ -29,6 +29,12 @@ namespace GameEngine
 
 		void OnInitialised();
 		bool IsGameOver() const { return m_gameBoard && m_gameBoard->IsGameOver(); }
+
+		void InitializeGravity(sf::Vector2f center, double strength);
+		sf::Vector2f GravityAt(sf::Vector2f pos);
+
+		static float WINDOW_HEIGHT;
+		static float WINDOW_WIDTH;
 
 	private:
 		GameEngineMain();
@@ -41,12 +47,12 @@ namespace GameEngine
 		void UpdateEntities();
 		void RenderEntities();		
 
-		static float WINDOW_HEIGHT;
-		static float WINDOW_WIDTH;
-
 		static GameEngineMain* sm_instance;
 		static sf::Clock	   sm_deltaTimeClock;
 		static sf::Clock	   sm_gameClock;
+		
+		sf::Vector2i gravityCenter;
+		double gravityStrength;
 
 		std::vector<Entity*> m_entitiesToAdd;
 		std::vector<Entity*> m_entities;

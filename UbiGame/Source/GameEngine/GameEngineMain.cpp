@@ -4,6 +4,7 @@
 #include <thread>
 #include <chrono>
 #include <iostream>
+#include <math.h>
 #include <SFML/Graphics.hpp>
 #include "Util/TextureManager.h"
 #include "Util/AnimationManager.h"
@@ -11,8 +12,8 @@
 
 using namespace GameEngine;
 
-float GameEngineMain::WINDOW_HEIGHT = 500;
-float GameEngineMain::WINDOW_WIDTH = 500;
+float GameEngineMain::WINDOW_HEIGHT = 1000;
+float GameEngineMain::WINDOW_WIDTH = 1000;
 //Nullptr init for singleton class
 GameEngineMain* GameEngineMain::sm_instance = nullptr;
 sf::Clock		GameEngineMain::sm_deltaTimeClock;
@@ -53,7 +54,7 @@ void GameEngineMain::OnInitialised()
 
 void GameEngineMain::CreateAndSetUpWindow()
 {
-	m_renderWindow = new sf::RenderWindow(sf::VideoMode((unsigned int)WINDOW_WIDTH, (unsigned int)WINDOW_HEIGHT), "Hack The North");
+	m_renderWindow = new sf::RenderWindow(sf::VideoMode((unsigned int)WINDOW_WIDTH, (unsigned int)WINDOW_HEIGHT), "Spinny Binny");
 	m_renderTarget = m_renderWindow;
 }
 
@@ -211,5 +212,20 @@ void GameEngineMain::RenderEntities()
 	{
 		m_renderWindow->display();
 	}	
+}
+
+
+void GameEngineMain::InitializeGravity(sf::Vector2f center, double strength) {
+	gravityCenter.x = round(center.x * WINDOW_WIDTH);
+	gravityCenter.y = round(center.y * WINDOW_HEIGHT);
+	gravityStrength = strength;
+}
+
+
+sf::Vector2f GameEngineMain::GravityAt(sf::Vector2f pos) {
+	return sf::Vector2f(
+		(gravityCenter.x - pos.x) * gravityStrength,
+		(gravityCenter.y - pos.y) * gravityStrength
+	);
 }
 
