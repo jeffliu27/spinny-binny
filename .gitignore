@@ -27,3 +27,6 @@
 *.app
 
 UbiGame/x64
+
+*.VC.opendb
+*.VC.db
