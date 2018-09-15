@@ -21,7 +21,7 @@ PlayerEntity::PlayerEntity()
 	m_renderComponent->SetZLevel(2);
 
 	//Animation
-	m_animComponent = static_cast<GameEngine::AnimationComponent*>(AddComponent<GameEngine::AnimationComponent>());
+	//m_animComponent = static_cast<GameEngine::AnimationComponent*>(AddComponent<GameEngine::AnimationComponent>());
 		
 	//Collisions
 	AddComponent<GameEngine::CollidablePhysicsComponent>();

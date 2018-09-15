@@ -38,3 +38,5 @@ Ubigame.VC.db
 *.pdb
 *.iobj
 *.ipdb
+
+.vs/*
