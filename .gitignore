@@ -13,6 +13,9 @@
 
 # Compiled Dynamic libraries
 
+# logs 
+
+*.log
 
 # Fortran module files
 *.mod
