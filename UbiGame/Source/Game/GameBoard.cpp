@@ -45,8 +45,9 @@ void GameBoard::Update()
 		m_lastProjectileSpawnTimer -= dt;
 		if (m_lastProjectileSpawnTimer <= 0.f)
 		{
-			SpawnNewRandomProjectiles();
-			// SpawnNewRandomTiledObstacles();
+			//SpawnNewRandomObstacles();
+			//SpawnNewRandomTiledObstacles();
+			SpawnNewRandomTrash();
 		}
 
 		UpdateProjectiles(dt);
@@ -146,6 +147,39 @@ void GameBoard::SpawnNewRandomProjectiles()
 	m_lastObstacleSpawnTimer = MathHelpers::RandFloatIn(minNextSpawnTime, maxNextSpawnTime);
 } */
 
+void GameBoard::SpawnNewRandomTrash()
+{
+	static int minTrashCount = 1;
+	static int maxTrashCount = 3;
+
+	static float minNextSpawnTime = 0.3f;
+	static float maxNextSpawnTime = 0.7f;
+
+	static float leftTrashXPos = 60.f;
+	static float rightTrashXPos = 800.f;
+	static float topTrashYPos = 0.f;
+	static float bottomTrashYPos = 800.f;
+
+	sf::Vector2f pos = sf::Vector2f(0.f, 0.f);
+	sf::Vector2f size = sf::Vector2f(0.f, 0.f);
+
+	int trashCount = (int)MathHelpers::RandFloatIn((float)minTrashCount, (float)maxTrashCount);
+	for (int a = 0; a < trashCount; ++a)
+	{
+		int spawnOnLRSide = (rand() > RAND_MAX / 2) ? 0 : 1;
+
+		if (spawnOnLRSide) {
+			pos = sf::Vector2f((rand() > RAND_MAX / 2) ? leftTrashXPos : rightTrashXPos, MathHelpers::RandFloatIn(topTrashYPos, bottomTrashYPos));
+			size = sf::Vector2f(32.f, 32.f);
+		}
+		else if (!spawnOnLRSide) {
+			pos = sf::Vector2f(MathHelpers::RandFloatIn(leftTrashXPos, rightTrashXPos), (rand() > RAND_MAX / 2) ? topTrashYPos : bottomTrashYPos);
+			size = sf::Vector2f(32.f, 32.f);
+		}
+		SpawnNewProjectile(pos, size);
+	}
+	m_lastProjectileSpawnTimer = MathHelpers::RandFloatIn(minNextSpawnTime, maxNextSpawnTime);
+}
 
 void GameBoard::SpawnNewProjectile(const sf::Vector2f& pos, const sf::Vector2f& size)
 {

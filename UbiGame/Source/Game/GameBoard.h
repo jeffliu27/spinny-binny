@@ -20,6 +20,8 @@ namespace Game
 		void UpdateProjectiles(float dt);
 		void UpdatePlayerDying();
 		void SpawnNewRandomProjectiles();
+		void SpawnNewRandomTrash();
+		//void SpawnNewRandomTiledObstacles();
 		void SpawnNewProjectile(const sf::Vector2f& pos, const sf::Vector2f& size);
 
 		bool IsGameOver() const { return m_isGameOver; }		
