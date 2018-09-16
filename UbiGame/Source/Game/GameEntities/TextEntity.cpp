@@ -7,7 +7,7 @@ TextEntity::TextEntity()
 {
 	m_textComponent = static_cast<GameEngine::TextComponent*>(AddComponent<GameEngine::TextComponent>());
 	
-	m_textComponent->SetZLevel(5);
+	m_textComponent->SetZLevel(-1);
 }
 
 TextEntity::~TextEntity()
