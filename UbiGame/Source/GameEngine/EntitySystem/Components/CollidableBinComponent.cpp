@@ -51,6 +51,17 @@ void CollidableBinComponent::Update()
 {
 	//For the time being just a simple intersection check that moves the entity out of all potential intersect boxes
 	std::vector<CollidableComponent*>& collidables = CollisionManager::GetInstance()->GetCollidables();
+
+	double vectorRotation = ((int) GetEntity()->GetRot() )% 360;
+	std::cout << vectorRotation << std::endl;
+	double Threshold = 45.f;
+
+	double valid_recycle_start = ((int)(vectorRotation + Threshold)) % 360;
+	double valid_recycle_end = ((int)(vectorRotation)) % 360;
+
+	double valid_garbage_start = ((int)(vectorRotation + 180)) % 360;
+	double valid_garbage_end = ((int)(vectorRotation + 180 + Threshold)) % 360;
+
 	int count = 0;
 	for (int i =0; i< collidables.size();
 		i++)
@@ -64,7 +75,7 @@ void CollidableBinComponent::Update()
 		else if (colComponent == this) {
 			//it++;
 		}
-		else {
+		else if (colComponent!= NULL && colComponent->GetEntity() != NULL) {
 
 
 
@@ -90,14 +101,34 @@ void CollidableBinComponent::Update()
 
 			if (distance_squared <= radius_squared) {
 				//collision
-				std::cout << "hello world" << std::endl;
+				//std::cout << "hello world" << std::endl;
 				//colComponent->SetVel(-(colComponent->GetVel()));
 				//TODO: Access center of trash
 				//Find the principal angle between trash and initial arm
 				double principal = atan(diff_vector.y / diff_vector.x) * 57.2958;
 
 				//Check if angle is within bin range
-				if (diff_vector.y > 0) {
+				double real_angle = 0;
+				if (diff_vector.x>0) {
+					if (diff_vector.y>0) {
+						real_angle = principal;
+					}
+					else {
+						real_angle = 360 - principal;
+
+					}
+				}
+				else {
+					if (diff_vector.y>0) {
+						real_angle = 180 - principal;
+					}
+					else {
+						real_angle = 180 + principal;
+
+					}
+
+				}
+				if (real_angle > valid_recycle_start && real_angle < valid_recycle_end || real_angle > valid_garbage_start && real_angle < valid_garbage_end) {
 					std::cout << "fusdkfsdlfk" << std::endl;
 					CollisionManager::GetInstance()->UnRegisterCollidable(colComponent);
 					//colComponent->GetEntity()->shouldDelete = true;
@@ -111,8 +142,6 @@ void CollidableBinComponent::Update()
 					//it = collidables.erase(it);
 					//State::RemoveEntity(ent_ptr);
 					//it++;
-
-					
 				}
 				else {
 					//it++;
@@ -124,8 +153,10 @@ void CollidableBinComponent::Update()
 			}
 		}
 
-		count++;
-		std::cout << count << ' ';
+		//count++;
+		//std::cout << count << ' ';
 		
-	}std::cout<<std::endl;
+	}
+
+	//std::cout<<std::endl;
 }

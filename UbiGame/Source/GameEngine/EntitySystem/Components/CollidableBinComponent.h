@@ -21,7 +21,7 @@ namespace GameEngine
 	private:
 		bool m_useGravity = true;
 		double m_mass = 5.0;
-		double m_radius = 150.f;
+		double m_radius = 200.f;
 		double m_angle = 90.f;
 
 
