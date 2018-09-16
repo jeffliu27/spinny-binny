@@ -7,6 +7,8 @@
 #include "GameEngine\Util\CameraManager.h"
 #include "Game\GameEntities\PlayerEntity.h"
 #include "Game\GameEntities\ProjectileEntity.h"
+#include "GameEngine\EntitySystem\Components\TextComponent.h"
+#include "Game\GameEntities\TextEntity.h"
 
 using namespace Game;
 
@@ -17,11 +19,19 @@ GameBoard::GameBoard()
 	, m_backGround(nullptr)
 {
 	m_player = new PlayerEntity();
+	m_text = new TextEntity();
 	
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_player);
 	m_player->SetPos(sf::Vector2f(50.f, 50.f));	
 	m_player->SetSize(sf::Vector2f(272.5f, 162.5f));
 	
+	sf::String testString = "I hope this works.";
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_text);
+	m_text->SetPos(sf::Vector2f(400.f, 400.f));
+	m_text->SetSize(sf::Vector2f(272.5f, 162.5f));
+	//m_text->SetText(testString);
+		
+
 	CreateBackGround();
 	//Debug
 	for (int a = 0; a < 3; ++a)

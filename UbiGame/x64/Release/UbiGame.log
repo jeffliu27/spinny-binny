@@ -1,23 +1,22 @@
-﻿  PlayerMovementComponent.cpp
-c:\users\jeff liu\documents\github\spinny-binny\ubigame\source\game\gamecomponents\playermovementcomponent.cpp(57): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\jeff liu\documents\github\spinny-binny\ubigame\source\game\gamecomponents\playermovementcomponent.cpp(63): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+﻿  TextEntity.cpp
   Generating code
-  1 of 963 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+  41 of 1070 functions ( 3.8%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    10 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  UbiGame.vcxproj -> C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\x64\Release\Spinny-binny.exe
-  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\img\bg.png
-  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\img\Bin.png
-  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\img\Correct.png
-  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\img\Flappy.png
-  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\img\Fork_Black.png
-  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\img\Fork_White.png
-  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\img\particles.png
-  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\img\player.png
-  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\img\Spoon_Black.png
-  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\img\tileset.png
-  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\img\Wrong.png
-  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\snd\glassBreak.wav
-  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\snd\thunder.wav
+  UbiGame.vcxproj -> C:\Users\jieni\Documents\Github\spinny-binny\x64\Release\Spinny-binny.exe
+  UbiGame.vcxproj -> C:\Users\jieni\Documents\Github\spinny-binny\x64\Release\Spinny-binny.pdb (Full PDB)
+  C:\Users\jieni\Documents\Github\spinny-binny\UbiGame\Resources\img\bg.png
+  C:\Users\jieni\Documents\Github\spinny-binny\UbiGame\Resources\img\Bin.png
+  C:\Users\jieni\Documents\Github\spinny-binny\UbiGame\Resources\img\Correct.png
+  C:\Users\jieni\Documents\Github\spinny-binny\UbiGame\Resources\img\Flappy.png
+  C:\Users\jieni\Documents\Github\spinny-binny\UbiGame\Resources\img\Fork_Black.png
+  C:\Users\jieni\Documents\Github\spinny-binny\UbiGame\Resources\img\Fork_White.png
+  C:\Users\jieni\Documents\Github\spinny-binny\UbiGame\Resources\img\particles.png
+  C:\Users\jieni\Documents\Github\spinny-binny\UbiGame\Resources\img\player.png
+  C:\Users\jieni\Documents\Github\spinny-binny\UbiGame\Resources\img\Spoon_Black.png
+  C:\Users\jieni\Documents\Github\spinny-binny\UbiGame\Resources\img\tileset.png
+  C:\Users\jieni\Documents\Github\spinny-binny\UbiGame\Resources\img\Wrong.png
+  C:\Users\jieni\Documents\Github\spinny-binny\UbiGame\Resources\snd\glassBreak.wav
+  C:\Users\jieni\Documents\Github\spinny-binny\UbiGame\Resources\snd\thunder.wav
   13 File(s) copied

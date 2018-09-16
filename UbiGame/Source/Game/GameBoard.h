@@ -21,7 +21,6 @@ namespace Game
 		void UpdatePlayerDying();
 		void SpawnNewRandomProjectiles();
 		void SpawnNewRandomTrash();
-		//void SpawnNewRandomTiledObstacles();
 		void SpawnNewProjectile(const sf::Vector2f& pos, const sf::Vector2f& size);
 
 		bool IsGameOver() const { return m_isGameOver; }		
@@ -33,6 +32,8 @@ namespace Game
 
 		PlayerEntity* m_player;
 		GameEngine::Entity* m_backGround;
+
+		class TextEntity* m_text;
 
 		std::vector<GameEngine::Entity*> m_projectiles;
 		float m_lastProjectileSpawnTimer;

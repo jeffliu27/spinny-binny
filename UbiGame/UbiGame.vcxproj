@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1C612ACF-48DE-480E-AE0D-6C444B86ABCF}</ProjectGuid>
     <RootNamespace>UbiGame</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
     <ProjectName>Spinny-binny</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -47,7 +47,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -139,6 +139,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\GameEngine\EntitySystem\Components\TextComponent.cpp" />
     <ClCompile Include="Source\GameEngine\Helper\MathHelpers.cpp" />
     <ClCompile Include="Source\Game\GameEntities\ProjectileEntity.cpp" />
     <ClCompile Include="Source\Game\GameComponents\PlayerCameraComponent.cpp" />
@@ -164,8 +165,10 @@
     <ClCompile Include="Source\GameEngine\GameEngineMain.cpp" />
     <ClCompile Include="Source\GameEngine\Util\TextureManager.cpp" />
     <ClCompile Include="Source\GameEngine\EntitySystem\Components\SpriteRenderComponent.cpp" />
+    <ClCompile Include="Source\Game\GameEntities\TextEntity.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\GameEngine\EntitySystem\Components\TextComponent.h" />
     <ClInclude Include="Source\GameEngine\Helper\MathHelpers.h" />
     <ClInclude Include="Source\Game\GameEntities\ProjectileEntity.h" />
     <ClInclude Include="Source\Game\GameComponents\PlayerCameraComponent.h" />
@@ -190,6 +193,10 @@
     <ClInclude Include="Source\GameEngine\GameEngineMain.h" />
     <ClInclude Include="Source\GameEngine\Util\TextureManager.h" />
     <ClInclude Include="Source\GameEngine\EntitySystem\Components\SpriteRenderComponent.h" />
+    <ClInclude Include="Source\Game\GameEntities\TextEntity.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="RobotoMono-Regular.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
