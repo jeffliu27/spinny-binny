@@ -102,11 +102,17 @@ void CollidableBinComponent::Update()
 					CollisionManager::GetInstance()->UnRegisterCollidable(colComponent);
 					//colComponent->GetEntity()->shouldDelete = true;
 					Entity* ent_ptr = colComponent->GetEntity();
+
+					Game::ProjectileEntity* projectile_entity = dynamic_cast<Game::ProjectileEntity*> (ent_ptr);
+					//If it is not recyclable
+
 					GameEngine::StateManager::GetInstance()->state
 						->RemoveEntity(ent_ptr);
 					//it = collidables.erase(it);
 					//State::RemoveEntity(ent_ptr);
 					//it++;
+
+					
 				}
 				else {
 					//it++;
