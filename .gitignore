@@ -42,3 +42,5 @@ Ubigame.VC.db
 *.iobj
 *.ipdb
 *.vcxproj
+*.db
+*.opendb
