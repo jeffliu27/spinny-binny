@@ -20,6 +20,9 @@ Game::ProjectileEntity::ProjectileEntity()
 
 Game::ProjectileEntity::ProjectileEntity(int trashTypeIndex)
 {
+	trashTypeID = trashTypeIndex;
+	isRecyclable = (trashTypeID == 5 || trashTypeID == 7 || trashTypeID == 9 || trashTypeID == 12);
+
 	m_renderComponent = static_cast<GameEngine::SpriteRenderComponent*>(AddComponent<GameEngine::SpriteRenderComponent>());
 	m_renderComponent->SetFillColor(sf::Color::Red);
 	m_renderComponent->SetZLevel(2);

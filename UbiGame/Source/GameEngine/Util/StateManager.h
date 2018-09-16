@@ -16,6 +16,7 @@ namespace GameEngine
 			return sm_instance;
 		}
 		State* state;
+		void SwitchState(State* newState);
 
 	private:
 		StateManager();

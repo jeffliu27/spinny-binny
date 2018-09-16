@@ -17,6 +17,8 @@ namespace Game
 		virtual void OnRemoveFromWorld() override;
 		
 		double mass;
+		bool isRecyclable;
+		int trashTypeID;
 
 	protected:
 		GameEngine::SpriteRenderComponent* m_renderComponent;

@@ -3,11 +3,10 @@
 
 using namespace Game;
 
-TextEntity::TextEntity()
+TextEntity::TextEntity(int z)
 {
 	m_textComponent = static_cast<GameEngine::TextComponent*>(AddComponent<GameEngine::TextComponent>());
-	
-	m_textComponent->SetZLevel(-1);
+	m_textComponent->SetZLevel(z);
 }
 
 TextEntity::~TextEntity()

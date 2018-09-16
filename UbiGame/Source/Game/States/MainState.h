@@ -10,9 +10,9 @@ namespace Game
 		MainState();
 		~MainState();
 
-		void Init();
-		void Update(float dt);
-		void Dispose();
+		virtual void Init() override;
+		virtual void Update(float dt) override;
+		virtual void Dispose() override;
 
 		bool IsGameOver() const { return m_gameBoard && m_gameBoard->IsGameOver(); }
 

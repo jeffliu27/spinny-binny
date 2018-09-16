@@ -8,7 +8,7 @@ namespace Game
 	class TextEntity : public GameEngine::Entity
 	{
 	public:
-		TextEntity();
+		TextEntity(int z = -1);
 		~TextEntity();
 
 		virtual void OnAddToWorld() override;
