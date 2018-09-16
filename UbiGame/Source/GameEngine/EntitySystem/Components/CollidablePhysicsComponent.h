@@ -17,6 +17,7 @@ namespace GameEngine
 
 		bool UsesGravity() const { return m_useGravity; }
 		bool GetMass() const { return m_mass; }
+		sf::Vector2f GetVel() const { return m_vel; }
 
 		void SetGravityUsage(bool useGravity) { m_useGravity = useGravity; }
 		void SetMass(double mass) { m_mass = mass; }
@@ -24,6 +25,7 @@ namespace GameEngine
 	private:
 		bool m_useGravity = true;
 		double m_mass = 1.0;
+		sf::Vector2f m_vel;
 
 	};
 }

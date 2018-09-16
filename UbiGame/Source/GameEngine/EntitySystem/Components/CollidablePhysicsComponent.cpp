@@ -9,6 +9,7 @@
 using namespace GameEngine;
 
 CollidablePhysicsComponent::CollidablePhysicsComponent()
+	: m_vel(sf::Vector2f(0.0, 0.0))
 {
 
 }
@@ -36,11 +37,17 @@ void CollidablePhysicsComponent::Update()
 {
 	if (m_useGravity) {
 		sf::Vector2f grav = GameEngine::GameEngineMain::GetInstance()->GravityAt(GetEntity()->GetPos());
-		grav.x *= m_mass;
-		grav.y *= m_mass;
+		// update velocity based on gravity and mass
+		m_vel.x = grav.x / m_mass;
+		m_vel.y = grav.y / m_mass;
+		//m_vel.x += grav.x / m_mass;
+		//m_vel.y += grav.y / m_mass;
+		// add friction (so it eventually slows down)
+		//m_vel.x += GameEngine::GameEngineMain::GetInstance()->ApplyFriction(m_vel.x);
+		//m_vel.y += GameEngine::GameEngineMain::GetInstance()->ApplyFriction(m_vel.y);
 		GetEntity()->SetPos(sf::Vector2f(
-			GetEntity()->GetPos().x + grav.x,
-			GetEntity()->GetPos().y + grav.y
+			GetEntity()->GetPos().x + m_vel.x,
+			GetEntity()->GetPos().y + m_vel.y
 		));
 	}
 	//For the time being just a simple intersection check that moves the entity out of all potential intersect boxes

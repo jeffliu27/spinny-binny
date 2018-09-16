@@ -5,6 +5,7 @@
 #include "GameEngine\EntitySystem\Components\SpriteRenderComponent.h"
 #include "GameEngine\Helper\MathHelpers.h"
 #include "GameEngine\Util\CameraManager.h"
+#include "GameEngine\Util\StateManager.h"
 #include "Game\GameEntities\PlayerEntity.h"
 #include "Game\GameEntities\ProjectileEntity.h"
 
@@ -18,7 +19,8 @@ GameBoard::GameBoard()
 {
 	m_player = new PlayerEntity();
 	
-	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_player);
+	GameEngine::StateManager::GetInstance()->GetActiveState()
+		->AddEntity(m_player);
 	m_player->SetPos(sf::Vector2f(50.f, 50.f));	
 	m_player->SetSize(sf::Vector2f(40.f, 40.f));
 	
@@ -70,7 +72,8 @@ void GameBoard::UpdateProjectiles(float dt)
 		//If we are to remove ourselves
 		if (projectile->GetPos().x < -50.f)
 		{
-			GameEngine::GameEngineMain::GetInstance()->RemoveEntity(projectile);
+			GameEngine::StateManager::GetInstance()->GetActiveState()
+				->RemoveEntity(projectile);
 			it = m_projectiles.erase(it);
 		}
 		else
@@ -184,7 +187,8 @@ void GameBoard::SpawnNewRandomTrash()
 void GameBoard::SpawnNewProjectile(const sf::Vector2f& pos, const sf::Vector2f& size)
 {
 	ProjectileEntity* projectile = new ProjectileEntity();
-	GameEngine::GameEngineMain::GetInstance()->AddEntity(projectile);
+	GameEngine::StateManager::GetInstance()->GetActiveState()
+		->AddEntity(projectile);
 	projectile->SetPos(pos);
 	projectile->SetSize(sf::Vector2f(size.x, size.y));
 
@@ -195,12 +199,14 @@ void GameBoard::SpawnNewProjectile(const sf::Vector2f& pos, const sf::Vector2f& 
 void GameBoard::CreateBackGround()
 {
 	GameEngine::Entity* bgEntity = new GameEngine::Entity();
-	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(bgEntity->AddComponent<GameEngine::SpriteRenderComponent>());
-	render->SetTexture(GameEngine::eTexture::BG);
+	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>
+		(bgEntity->AddComponent<GameEngine::SpriteRenderComponent>());
+	render->SetTexture(GameEngine::eTexture::Particles);
 	render->SetZLevel(0);
 	bgEntity->SetPos(sf::Vector2f(250.f, 250.f));
 	bgEntity->SetSize(sf::Vector2f(500.f, 500.f));
-	GameEngine::GameEngineMain::GetInstance()->AddEntity(bgEntity);
+	GameEngine::StateManager::GetInstance()->GetActiveState()
+		->AddEntity(bgEntity);
 
 	m_backGround = bgEntity;
 }

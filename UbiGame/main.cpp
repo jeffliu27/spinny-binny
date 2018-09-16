@@ -1,9 +1,14 @@
 #include "Source/GameEngine/GameEngineMain.h"
+#include "Source/GameEngine/Util/StateManager.h"
+#include "Source/Game/States/MainState.h"
+
+#include <memory>
 
 int main()
 {
 	GameEngine::GameEngineMain* mainEngine = GameEngine::GameEngineMain::GetInstance();
-	mainEngine->InitializeGravity(sf::Vector2f(0.5, 0.5), 0.01);
+	GameEngine::StateManager::GetInstance()
+		->AddState(GameEngine::StateRef(new Game::MainState()));
 	while (mainEngine->GetRenderWindow()->isOpen())
 	{				
 		mainEngine->Update();
