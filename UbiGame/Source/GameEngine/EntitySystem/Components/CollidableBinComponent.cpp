@@ -63,8 +63,7 @@ void CollidableBinComponent::Update()
 	double valid_garbage_end = ((int)(vectorRotation + 270)) % 360;
 
 	int count = 0;
-	for (int i =0; i< collidables.size();
-		i++)
+	for (int i =0; i< collidables.size(); i++)
 	{	
 
 		
