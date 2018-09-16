@@ -10,11 +10,11 @@ TextComponent::TextComponent()
 {
 	m_font.loadFromFile("RobotoMono-Regular.ttf");
 	m_text.setFont(m_font);
-	m_text.setString("bruh");
+	m_text.setString("");
 	m_text.setFillColor(sf::Color());
-	m_rectangle.setSize(sf::Vector2f(800, 800));
-	m_rectangle.setFillColor(sf::Color(200, 100, 150, 255));
-	
+	m_rectangle.setSize(sf::Vector2f(0.0, 0.0));
+	m_rectangle.setFillColor(sf::Color());
+	RecalcOrigin();
 }
 
 TextComponent::~TextComponent()
@@ -22,18 +22,17 @@ TextComponent::~TextComponent()
 
 }
 
+void TextComponent::RecalcOrigin()
+{
+	sf::FloatRect rect = m_text.getLocalBounds();
+	m_text.setOrigin(rect.left + rect.width / 2.f, rect.top + rect.height / 2.f);
+}
+
 void TextComponent::OnAddToWorld()
 {
 	__super::OnAddToWorld();
-	UpdateTextParams();
 }
 
-void TextComponent::UpdateTextParams()
-{
-
-		return;
-	
-}
 
 void TextComponent::Update()
 {

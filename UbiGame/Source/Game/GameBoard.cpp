@@ -81,7 +81,10 @@ void GameBoard::UpdateProjectiles(float dt)
 		//currPos.x -= obstacleSpeed * dt;
 		//obstacle->SetPos(currPos);
 		//If we are to remove ourselves
-		if (projectile->GetPos().x < -50.f)
+		/*if (projectile->GetPos().x + 60 < GameEngine::WINDOW_WIDTH / 2 &&
+			projectile->GetPos().x - 60 < GameEngine::WINDOW_WIDTH / 2 &&
+			projectile->GetPos().y + 60 < GameEngine::WINDOW_HEIGHT / 2 &&
+			projectile->GetPos().x - 60 < GameEngine::WINDOW_HEIGHT/ 2)
 		{
 			GameEngine::StateManager::GetInstance()->state
 				->RemoveEntity(projectile);
@@ -90,7 +93,8 @@ void GameBoard::UpdateProjectiles(float dt)
 		else
 		{
 			it++;
-		}
+		}*/
+		it++;
 	}
 }
 
