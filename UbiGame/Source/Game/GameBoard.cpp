@@ -28,11 +28,10 @@ GameBoard::GameBoard()
 	m_player->SetPos(sf::Vector2f(GameEngine::WINDOW_WIDTH / 2.0, GameEngine::WINDOW_HEIGHT / 2.0));
 	m_player->SetSize(sf::Vector2f(272.5f, 162.5f));
 	
-	sf::String testString = "I hope this works.";
-	GameEngine::StateManager::GetInstance()->state->AddEntity(m_text);
-	m_text->SetPos(sf::Vector2f(400.f, 400.f));
-	m_text->SetSize(sf::Vector2f(272.5f, 162.5f));
-	//m_text->SetText(testString);
+	//sf::String testString = "I hope this works.";
+	//GameEngine::StateManager::GetInstance()->state->AddEntity(m_text);
+	//m_text->SetPos(sf::Vector2f(400.f, 400.f));
+	//m_text->SetSize(sf::Vector2f(272.5f, 162.5f));
 		
 
 	CreateBackGround();
