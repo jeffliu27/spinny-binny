@@ -15,7 +15,7 @@ Game::ProjectileEntity::ProjectileEntity()
 	
 
 	m_physicsComponent = static_cast<GameEngine::CollidablePhysicsComponent*>(AddComponent<GameEngine::CollidablePhysicsComponent>());
-	m_physicsComponent->SetMass(0.05);
+	m_physicsComponent->SetMass(12.0);
 }
 
 ProjectileEntity::~ProjectileEntity()

@@ -1,3 +1,4 @@
+#include "config.h"
 #include "GameEngineMain.h"
 
 #include <assert.h>
@@ -9,11 +10,10 @@
 #include "Util/TextureManager.h"
 #include "Util/AnimationManager.h"
 #include "Util/CameraManager.h"
+#include "Util/StateManager.h"
 
 using namespace GameEngine;
 
-float GameEngineMain::WINDOW_HEIGHT = 800;
-float GameEngineMain::WINDOW_WIDTH = 800;
 //Nullptr init for singleton class
 GameEngineMain* GameEngineMain::sm_instance = nullptr;
 sf::Clock		GameEngineMain::sm_deltaTimeClock;
@@ -22,7 +22,6 @@ sf::Clock		GameEngineMain::sm_gameClock;
 GameEngineMain::GameEngineMain()
 	: m_renderTarget(nullptr)	
 	, m_windowInitialised(false)
-	, m_gameBoard(nullptr)
 	, m_lastDT(0.f)
 {
 	CreateAndSetUpWindow();
@@ -38,14 +37,15 @@ GameEngineMain::GameEngineMain()
 
 GameEngineMain::~GameEngineMain()
 {
+	StateManager::GetInstance()->state->Dispose();
 	delete m_renderTarget;
 }
 
 
 void GameEngineMain::OnInitialised()
 {
+	StateManager::GetInstance()->state->Init();
 	//Engine is initialised, this spot should be used for game object and clocks initialisation
-	m_gameBoard = new Game::GameBoard();
 	sm_deltaTimeClock.restart();
 	sm_gameClock.restart();
 	m_lastDT = 0.f;
@@ -59,29 +59,6 @@ void GameEngineMain::CreateAndSetUpWindow()
 }
 
 
-void GameEngineMain::AddEntity(Entity* entity)
-{
-	auto found = std::find(m_entities.begin(), m_entities.end(), entity);
-	assert(found == m_entities.end()); //Drop an assert if we add duplicate;
-	if (found == m_entities.end())
-	{
-		m_entitiesToAdd.push_back(entity);		
-	}	
-}
-
-
-void GameEngineMain::RemoveEntity(Entity* entity)
-{
-	auto found = std::find(m_entities.begin(), m_entities.end(), entity);	
-
-    if (found != m_entities.end())
-	{
-		m_entitiesToRemove.push_back(entity);
-		entity->OnRemoveFromWorld();
-	}	
-}
-
-
 void GameEngineMain::Update()
 {		
 	//First update will happen after init for the time being (we will add loading later)
@@ -90,54 +67,31 @@ void GameEngineMain::Update()
 		m_windowInitialised = true;
 		OnInitialised();
 	}
-	
-	RemovePendingEntities();
-	
-	UpdateWindowEvents();
-	if (m_gameBoard)
-		m_gameBoard->Update();
 
-	UpdateEntities();
+	//for (auto const& state : StateManager::GetInstance()->GetStates())
+	// 	state->RemovePendingEntities();
+	StateManager::GetInstance()->state
+		->RemovePendingEntities();
+
+	UpdateWindowEvents();
+	
+	StateManager::GetInstance()->state
+		->Update(0.0);
+
+	//for (auto const& state : StateManager::GetInstance()->GetStates())
+	//	state->UpdateEntities();
+	StateManager::GetInstance()->state
+		->UpdateEntities();
 	RenderEntities();
 
-	AddPendingEntities();
-	
+	//for (auto const& state : StateManager::GetInstance()->GetStates())
+	//	state->AddPendingEntities();
+	StateManager::GetInstance()->state
+		->AddPendingEntities();
+
 	//We pool last delta and will pass it as GetTimeDelta - from game perspective it's more important that DT stays the same the whole frame, rather than be updated halfway through the frame
 	m_lastDT = sm_deltaTimeClock.getElapsedTime().asSeconds();
 	sm_deltaTimeClock.restart();
-}
-
-
-void GameEngineMain::AddPendingEntities()
-{
-	for (int a = 0; a < m_entitiesToAdd.size(); ++a)
-	{
-		m_entities.push_back(m_entitiesToAdd[a]);
-		m_entitiesToAdd[a]->OnAddToWorld();
-	}
-
-	m_entitiesToAdd.clear();
-}
-
-
-void GameEngineMain::RemovePendingEntities()
-{
-	for (int a = 0; a < m_entitiesToRemove.size(); ++a)
-	{
-		Entity* entity = m_entitiesToRemove[a];
-
-		auto found = std::find(m_entities.begin(), m_entities.end(), entity);
-		assert(found != m_entities.end());
-
-		if (found != m_entities.end())
-		{
-			m_entities.erase(found);
-
-			delete entity;
-		}
-	}
-
-	m_entitiesToRemove.clear();
 }
 
 
@@ -155,16 +109,6 @@ void GameEngineMain::UpdateWindowEvents()
 			m_renderTarget = nullptr;		
 			break;
 		}
-	}
-}
-
-
-void GameEngineMain::UpdateEntities()
-{
-	//Update que
-	for each (auto entity in m_entities)
-	{
-		entity->Update();
 	}
 }
 
@@ -188,13 +132,16 @@ void GameEngineMain::RenderEntities()
 	//Render que
 	std::vector<RenderComponent*> renderers;
 	//Every entity that has RenderComponent, or a component that extends RenderComponent - should end up in a render que
-	for each (auto entity in m_entities)
-	{
-		if (RenderComponent* render = entity->GetComponent< RenderComponent >())
+	//for (auto const& state: StateManager::GetInstance()->GetStates())
+	//{
+		for each (auto entity in StateManager::GetInstance()->state->entities)
 		{
-			renderers.push_back(render);
+			if (RenderComponent* render = entity->GetComponent< RenderComponent >())
+			{
+				renderers.push_back(render);
+			}
 		}
-	}
+	//}
 
 	// sort using a lambda expression
 	// We sort entities according to their Z level, meaning that the ones with that value lower will be draw FIRST (background), and higher LAST (player)
@@ -214,18 +161,30 @@ void GameEngineMain::RenderEntities()
 	}	
 }
 
-
-void GameEngineMain::InitializeGravity(sf::Vector2f center, double strength) {
-	gravityCenter.x = round(center.x * WINDOW_WIDTH);
-	gravityCenter.y = round(center.y * WINDOW_HEIGHT);
+void GameEngineMain::InitGravity(sf::Vector2f center, double strength)
+{
+	gravityCenter.x = round(center.x * GameEngine::WINDOW_WIDTH);
+	gravityCenter.y = round(center.y * GameEngine::WINDOW_HEIGHT);
 	gravityStrength = strength;
 }
 
 
-sf::Vector2f GameEngineMain::GravityAt(sf::Vector2f pos) {
+sf::Vector2f GameEngineMain::GravityAt(sf::Vector2f pos)
+{
 	return sf::Vector2f(
 		(gravityCenter.x - pos.x) * gravityStrength,
 		(gravityCenter.y - pos.y) * gravityStrength
 	);
+}
+
+float GameEngineMain::ApplyFriction(float vel)
+{
+	return vel > 0
+		? vel - friction > 0
+			? -friction
+			: 0.0
+		: vel + friction < 0
+			? friction
+			: 0.0;
 }
 

@@ -3,6 +3,7 @@
 
 #include "GameEngine\EntitySystem\Entity.h"
 #include "GameEngine\GameEngineMain.h"
+#include "GameEngine\Util\StateManager.h"
 
 namespace GameEngine
 {

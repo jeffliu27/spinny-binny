@@ -1,10 +1,12 @@
 #include "GameBoard.h"
 
+#include "GameEngine\config.h"
 #include "GameEngine\GameEngineMain.h"
 #include "GameEngine\EntitySystem\Components\CollidableComponent.h"
 #include "GameEngine\EntitySystem\Components\SpriteRenderComponent.h"
 #include "GameEngine\Helper\MathHelpers.h"
 #include "GameEngine\Util\CameraManager.h"
+#include "GameEngine\Util\StateManager.h"
 #include "Game\GameEntities\PlayerEntity.h"
 #include "Game\GameEntities\ProjectileEntity.h"
 #include "GameEngine\EntitySystem\Components\TextComponent.h"
@@ -21,12 +23,13 @@ GameBoard::GameBoard()
 	m_player = new PlayerEntity();
 	m_text = new TextEntity();
 	
-	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_player);
-	m_player->SetPos(sf::Vector2f(50.f, 50.f));	
+	GameEngine::StateManager::GetInstance()->state
+		->AddEntity(m_player);
+	m_player->SetPos(sf::Vector2f(GameEngine::WINDOW_WIDTH / 2.0, GameEngine::WINDOW_HEIGHT / 2.0));
 	m_player->SetSize(sf::Vector2f(272.5f, 162.5f));
 	
 	sf::String testString = "I hope this works.";
-	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_text);
+	GameEngine::StateManager::GetInstance()->state->AddEntity(m_text);
 	m_text->SetPos(sf::Vector2f(400.f, 400.f));
 	m_text->SetSize(sf::Vector2f(272.5f, 162.5f));
 	//m_text->SetText(testString);
@@ -80,7 +83,8 @@ void GameBoard::UpdateProjectiles(float dt)
 		//If we are to remove ourselves
 		if (projectile->GetPos().x < -50.f)
 		{
-			GameEngine::GameEngineMain::GetInstance()->RemoveEntity(projectile);
+			GameEngine::StateManager::GetInstance()->state
+				->RemoveEntity(projectile);
 			it = m_projectiles.erase(it);
 		}
 		else
@@ -194,7 +198,8 @@ void GameBoard::SpawnNewRandomTrash()
 void GameBoard::SpawnNewProjectile(const sf::Vector2f& pos, const sf::Vector2f& size)
 {
 	ProjectileEntity* projectile = new ProjectileEntity();
-	GameEngine::GameEngineMain::GetInstance()->AddEntity(projectile);
+	GameEngine::StateManager::GetInstance()->state
+		->AddEntity(projectile);
 	projectile->SetPos(pos);
 	projectile->SetSize(sf::Vector2f(size.x, size.y));
 
@@ -205,12 +210,14 @@ void GameBoard::SpawnNewProjectile(const sf::Vector2f& pos, const sf::Vector2f& 
 void GameBoard::CreateBackGround()
 {
 	GameEngine::Entity* bgEntity = new GameEngine::Entity();
-	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(bgEntity->AddComponent<GameEngine::SpriteRenderComponent>());
-	render->SetTexture(GameEngine::eTexture::BG);
+	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>
+		(bgEntity->AddComponent<GameEngine::SpriteRenderComponent>());
+	render->SetTexture(GameEngine::eTexture::Particles);
 	render->SetZLevel(0);
 	bgEntity->SetPos(sf::Vector2f(250.f, 250.f));
 	bgEntity->SetSize(sf::Vector2f(500.f, 500.f));
-	GameEngine::GameEngineMain::GetInstance()->AddEntity(bgEntity);
+	GameEngine::StateManager::GetInstance()->state
+		->AddEntity(bgEntity);
 
 	m_backGround = bgEntity;
 }

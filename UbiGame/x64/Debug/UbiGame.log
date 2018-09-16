@@ -1,9 +1,8 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(387,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (UbiGame.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  GameBoard.cpp
+  main.cpp
+  ProjectileEntity.cpp
   Generating Code...
   Skipping... (no relevant changes detected)
-  ProjectileEntity.cpp
-  PlayerEntity.cpp
   ObstacleEntity.cpp
   TextureManager.cpp
   SoundManager.cpp
@@ -15,17 +14,6 @@
   SoundComponent.cpp
   CollidableComponent.cpp
   Component.cpp
-  main.cpp
-  PlayerSoundComponent.cpp
-  PlayerMovementComponent.cpp
-  PlayerCameraComponent.cpp
-  GameEngineMain.cpp
-  SpriteRenderComponent.cpp
-  RenderComponent.cpp
-  ParticleEmitterComponent.cpp
-  ParticleComponent.cpp
-  CollidablePhysicsComponent.cpp
-  AnimationComponent.cpp
   UbiGame.vcxproj -> C:\Users\conra\spinny-binny\x64\Debug\Spinny-binny.exe
   C:\Users\conra\spinny-binny\UbiGame\Resources\img\bg.png
   C:\Users\conra\spinny-binny\UbiGame\Resources\img\Bin.png

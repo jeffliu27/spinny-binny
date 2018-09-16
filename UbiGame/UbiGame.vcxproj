@@ -140,6 +140,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\GameEngine\EntitySystem\Components\TextComponent.cpp" />
+    <ClCompile Include="Source\GameEngine\Util\State.cpp" />
+    <ClCompile Include="Source\Game\States\GameOverState.cpp" />
+    <ClCompile Include="Source\Game\States\MainState.cpp" />
     <ClCompile Include="Source\GameEngine\Helper\MathHelpers.cpp" />
     <ClCompile Include="Source\Game\GameEntities\ProjectileEntity.cpp" />
     <ClCompile Include="Source\Game\GameComponents\PlayerCameraComponent.cpp" />
@@ -169,7 +172,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\GameEngine\EntitySystem\Components\TextComponent.h" />
+    <ClCompile Include="Source\GameEngine\Util\StateManager.cpp" />
+    <ClCompile Include="Source\Game\States\StartState.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Game\States\GameOverState.h" />
+    <ClInclude Include="Source\Game\States\MainState.h" />
+    <ClInclude Include="Source\GameEngine\config.h" />
     <ClInclude Include="Source\GameEngine\Helper\MathHelpers.h" />
+    <ClInclude Include="Source\GameEngine\Util\State.h" />
     <ClInclude Include="Source\Game\GameEntities\ProjectileEntity.h" />
     <ClInclude Include="Source\Game\GameComponents\PlayerCameraComponent.h" />
     <ClInclude Include="Source\GameEngine\Util\CameraManager.h" />
@@ -197,6 +208,8 @@
   </ItemGroup>
   <ItemGroup>
     <Font Include="RobotoMono-Regular.ttf" />
+    <ClInclude Include="Source\GameEngine\Util\StateManager.h" />
+    <ClInclude Include="Source\Game\States\StartState.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

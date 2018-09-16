@@ -37,6 +37,7 @@ void ParticleComponent::Update()
 
 	if (m_lifeTimer <= 0.f)
 	{
-		GameEngine::GameEngineMain::GetInstance()->RemoveEntity(GetEntity());
+		StateManager::GetInstance()->state
+			->RemoveEntity(GetEntity());
 	}
 }
