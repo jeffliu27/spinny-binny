@@ -80,6 +80,8 @@ void PlayerMovementComponent::Update()
 		}
 	}
 
+
+
 	//GetEntity()->SetPos(GetEntity()->GetPos() + wantedVel);
 
 	//if (wantedVel != sf::Vector2f(0.f, 0.f))

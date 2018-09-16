@@ -1,30 +1,29 @@
 ﻿  CollidableBinComponent.cpp
-  PlayerEntity.cpp
   Generating code
-  3 of 1077 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+  1 of 961 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  UbiGame.vcxproj -> C:\Users\Julian\spinny-binny\x64\Release\Spinny-binny.exe
-  C:\Users\Julian\spinny-binny\UbiGame\Resources\Recycling.txt
-  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\Apple.png
-  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\bg.png
-  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\Bin-old.png
-  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\Bin.png
-  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\Bottle.png
-  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\Coffee.png
-  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\Correct.png
-  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\Flappy.png
-  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\Fork_Black.png
-  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\Fork_White.png
-  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\Jar_Clean.png
-  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\Jar_Dirty.png
-  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\Paper_Clean.png
-  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\Paper_Dirty.png
-  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\particles.png
-  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\player.png
-  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\tileset.png
-  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\Wrong.png
-  C:\Users\Julian\spinny-binny\UbiGame\Resources\snd\glassBreak.wav
-  C:\Users\Julian\spinny-binny\UbiGame\Resources\snd\thunder.wav
+  UbiGame.vcxproj -> C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\x64\Release\Spinny-binny.exe
+  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\Recycling.txt
+  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\img\Apple.png
+  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\img\bg.png
+  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\img\Bin-old.png
+  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\img\Bin.png
+  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\img\Bottle.png
+  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\img\Coffee.png
+  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\img\Correct.png
+  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\img\Flappy.png
+  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\img\Fork_Black.png
+  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\img\Fork_White.png
+  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\img\Jar_Clean.png
+  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\img\Jar_Dirty.png
+  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\img\Paper_Clean.png
+  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\img\Paper_Dirty.png
+  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\img\particles.png
+  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\img\player.png
+  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\img\tileset.png
+  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\img\Wrong.png
+  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\snd\glassBreak.wav
+  C:\Users\Jeff Liu\Documents\GitHub\spinny-binny\UbiGame\Resources\snd\thunder.wav
   21 File(s) copied
