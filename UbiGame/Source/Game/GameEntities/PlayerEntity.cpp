@@ -25,6 +25,7 @@ PlayerEntity::PlayerEntity()
 		
 	//Collisions
 	AddComponent<GameEngine::CollidablePhysicsComponent>();
+	GetComponent<GameEngine::CollidablePhysicsComponent>()->SetGravityUsage(false);
 	
 	//Particles
 	GameEngine::ParticleEmitterComponent* emitterComponent = static_cast<GameEngine::ParticleEmitterComponent*>(AddComponent<GameEngine::ParticleEmitterComponent>());

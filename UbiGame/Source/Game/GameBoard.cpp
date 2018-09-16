@@ -1,5 +1,6 @@
 #include "GameBoard.h"
 
+#include "GameEngine\config.h"
 #include "GameEngine\GameEngineMain.h"
 #include "GameEngine\EntitySystem\Components\CollidableComponent.h"
 #include "GameEngine\EntitySystem\Components\SpriteRenderComponent.h"
@@ -21,7 +22,7 @@ GameBoard::GameBoard()
 	
 	GameEngine::StateManager::GetInstance()->state
 		->AddEntity(m_player);
-	m_player->SetPos(sf::Vector2f(50.f, 50.f));	
+	m_player->SetPos(sf::Vector2f(GameEngine::WINDOW_WIDTH / 2.0, GameEngine::WINDOW_HEIGHT / 2.0));
 	m_player->SetSize(sf::Vector2f(272.5f, 162.5f));
 	
 	CreateBackGround();
