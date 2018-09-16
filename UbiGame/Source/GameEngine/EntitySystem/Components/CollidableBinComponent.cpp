@@ -57,10 +57,10 @@ void CollidableBinComponent::Update()
 	double Threshold = 45.f;
 
 	double valid_recycle_start = ((int)(vectorRotation + Threshold)) % 360;
-	double valid_recycle_end = ((int)(vectorRotation)) % 360;
+	double valid_recycle_end = ((int)(vectorRotation + 90)) % 360;
 
-	double valid_garbage_start = ((int)(vectorRotation + 180)) % 360;
-	double valid_garbage_end = ((int)(vectorRotation + 180 + Threshold)) % 360;
+	double valid_garbage_start = ((int)(vectorRotation + 180 + Threshold)) % 360;
+	double valid_garbage_end = ((int)(vectorRotation + 270)) % 360;
 
 	int count = 0;
 	for (int i =0; i< collidables.size();
