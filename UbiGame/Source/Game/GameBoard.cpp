@@ -19,7 +19,7 @@ GameBoard::GameBoard()
 {
 	m_player = new PlayerEntity();
 	
-	GameEngine::StateManager::GetInstance()->GetActiveState()
+	GameEngine::StateManager::GetInstance()->state
 		->AddEntity(m_player);
 	m_player->SetPos(sf::Vector2f(50.f, 50.f));	
 	m_player->SetSize(sf::Vector2f(40.f, 40.f));
@@ -72,7 +72,7 @@ void GameBoard::UpdateProjectiles(float dt)
 		//If we are to remove ourselves
 		if (projectile->GetPos().x < -50.f)
 		{
-			GameEngine::StateManager::GetInstance()->GetActiveState()
+			GameEngine::StateManager::GetInstance()->state
 				->RemoveEntity(projectile);
 			it = m_projectiles.erase(it);
 		}
@@ -187,7 +187,7 @@ void GameBoard::SpawnNewRandomTrash()
 void GameBoard::SpawnNewProjectile(const sf::Vector2f& pos, const sf::Vector2f& size)
 {
 	ProjectileEntity* projectile = new ProjectileEntity();
-	GameEngine::StateManager::GetInstance()->GetActiveState()
+	GameEngine::StateManager::GetInstance()->state
 		->AddEntity(projectile);
 	projectile->SetPos(pos);
 	projectile->SetSize(sf::Vector2f(size.x, size.y));
@@ -205,7 +205,7 @@ void GameBoard::CreateBackGround()
 	render->SetZLevel(0);
 	bgEntity->SetPos(sf::Vector2f(250.f, 250.f));
 	bgEntity->SetSize(sf::Vector2f(500.f, 500.f));
-	GameEngine::StateManager::GetInstance()->GetActiveState()
+	GameEngine::StateManager::GetInstance()->state
 		->AddEntity(bgEntity);
 
 	m_backGround = bgEntity;

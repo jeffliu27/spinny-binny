@@ -38,10 +38,10 @@ void PlayerMovementComponent::Update()
 {
 	__super::Update();
 
-	if (GameEngine::GameEngineMain::GetInstance()->IsGameOver())
-	{
-		return;
-	}
+	//if (GameEngine::StateManager::GetInstance()->IsGameOver())
+	//{
+	//	return;
+	//}
 
 	float dt = GameEngine::GameEngineMain::GetTimeDelta();
 	static bool  debugSounds = false;

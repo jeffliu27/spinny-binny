@@ -12,8 +12,11 @@ namespace GameEngine
 	{
 	public:		
 		~GameEngineMain();
-				
-		static GameEngineMain* GetInstance() { if (!sm_instance) sm_instance = new GameEngineMain(); return sm_instance; }
+		static GameEngineMain* GetInstance()
+		{
+			if (!sm_instance) sm_instance = new GameEngineMain();
+			return sm_instance;
+		}
 		//Returns time between update frames in seconds
 		static float		   GetTimeDelta() { return GetInstance()->m_lastDT; }
 		static float		   GetGameTime() { return sm_gameClock.getElapsedTime().asSeconds(); }
@@ -23,6 +26,11 @@ namespace GameEngine
 		void SetRenderTarget(sf::RenderTarget* target) { m_renderTarget = target; }
 
 		void OnInitialised();
+
+		void InitGravity(sf::Vector2f center, double strength);
+		void InitFriction(double friction) { friction = friction; }
+		sf::Vector2f GravityAt(sf::Vector2f pos);
+		float ApplyFriction(float vel);
 
 	private:
 		GameEngineMain();
@@ -42,5 +50,9 @@ namespace GameEngine
 		float				m_lastDT;
 
 		bool m_windowInitialised;
+
+		sf::Vector2i gravityCenter;
+		double gravityStrength;
+		double friction;
 	};
 }

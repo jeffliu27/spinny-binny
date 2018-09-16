@@ -1,7 +1,9 @@
 #include "CollidablePhysicsComponent.h"
 
+#include "Game\States\MainState.h"
 #include "GameEngine/GameEngineMain.h"
 #include "GameEngine/Util/CollisionManager.h"
+#include "GameEngine\Util\StateManager.h"
 #include "GameEngine/EntitySystem/Entity.h"
 
 #include <vector>
@@ -36,15 +38,16 @@ void CollidablePhysicsComponent::OnRemoveFromWorld()
 void CollidablePhysicsComponent::Update()
 {
 	if (m_useGravity) {
-		sf::Vector2f grav = GameEngine::GameEngineMain::GetInstance()->GravityAt(GetEntity()->GetPos());
+		sf::Vector2f grav = GameEngine::GameEngineMain::GetInstance()
+			->GravityAt(GetEntity()->GetPos());
 		// update velocity based on gravity and mass
-		m_vel.x = grav.x / m_mass;
-		m_vel.y = grav.y / m_mass;
-		//m_vel.x += grav.x / m_mass;
-		//m_vel.y += grav.y / m_mass;
+		// m_vel.x = grav.x / m_mass;
+		// m_vel.y = grav.y / m_mass;
+		m_vel.x += grav.x / m_mass;
+		m_vel.y += grav.y / m_mass;
 		// add friction (so it eventually slows down)
-		//m_vel.x += GameEngine::GameEngineMain::GetInstance()->ApplyFriction(m_vel.x);
-		//m_vel.y += GameEngine::GameEngineMain::GetInstance()->ApplyFriction(m_vel.y);
+		m_vel.x += GameEngine::GameEngineMain::GetInstance()->ApplyFriction(m_vel.x);
+		m_vel.y += GameEngine::GameEngineMain::GetInstance()->ApplyFriction(m_vel.y);
 		GetEntity()->SetPos(sf::Vector2f(
 			GetEntity()->GetPos().x + m_vel.x,
 			GetEntity()->GetPos().y + m_vel.y

@@ -4,9 +4,6 @@
   Generating Code...
   Skipping... (no relevant changes detected)
   ObstacleEntity.cpp
-  PlayerSoundComponent.cpp
-  PlayerMovementComponent.cpp
-  PlayerCameraComponent.cpp
   TextureManager.cpp
   SoundManager.cpp
   CollisionManager.cpp
@@ -14,13 +11,8 @@
   AnimationManager.cpp
   MathHelpers.cpp
   Entity.cpp
-  SpriteRenderComponent.cpp
   SoundComponent.cpp
-  RenderComponent.cpp
-  ParticleEmitterComponent.cpp
-  ParticleComponent.cpp
   CollidableComponent.cpp
-  AnimationComponent.cpp
   Component.cpp
   UbiGame.vcxproj -> C:\Users\conra\spinny-binny\x64\Debug\Spinny-binny.exe
   C:\Users\conra\spinny-binny\UbiGame\Resources\img\bg.png

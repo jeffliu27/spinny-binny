@@ -16,17 +16,9 @@ namespace Game
 
 		bool IsGameOver() const { return m_gameBoard && m_gameBoard->IsGameOver(); }
 
-		void InitGravity(sf::Vector2f center, double strength);
-		void InitFriction(double friction) { friction = friction; }
-		sf::Vector2f GravityAt(sf::Vector2f pos);
-		float ApplyFriction(float vel);
-
 	private:
 		Game::GameBoard* m_gameBoard;
 
-		sf::Vector2i gravityCenter;
-		double gravityStrength;
-		double friction;
 	};
 }
 

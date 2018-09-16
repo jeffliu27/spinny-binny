@@ -71,5 +71,6 @@ void ParticleEmitterComponent::EmitParticle()
 
 	particleCMP->SetLifeTime(m_particleDefinition.m_lifeTime);
 
-	GameEngineMain::GetInstance()->AddEntity(particleEntity);
+	StateManager::GetInstance()->state
+		->AddEntity(particleEntity);
 }

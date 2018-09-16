@@ -37,14 +37,14 @@ GameEngineMain::GameEngineMain()
 
 GameEngineMain::~GameEngineMain()
 {
-	StateManager::GetInstance()->GetActiveState()->Dispose();
+	StateManager::GetInstance()->state->Dispose();
 	delete m_renderTarget;
 }
 
 
 void GameEngineMain::OnInitialised()
 {
-	StateManager::GetInstance()->GetActiveState()->Init();
+	StateManager::GetInstance()->state->Init();
 	//Engine is initialised, this spot should be used for game object and clocks initialisation
 	sm_deltaTimeClock.restart();
 	sm_gameClock.restart();
@@ -70,23 +70,23 @@ void GameEngineMain::Update()
 
 	//for (auto const& state : StateManager::GetInstance()->GetStates())
 	// 	state->RemovePendingEntities();
-	StateManager::GetInstance()->GetActiveState()
+	StateManager::GetInstance()->state
 		->RemovePendingEntities();
 
 	UpdateWindowEvents();
 	
-	StateManager::GetInstance()->GetActiveState()
+	StateManager::GetInstance()->state
 		->Update(0.0);
 
 	//for (auto const& state : StateManager::GetInstance()->GetStates())
 	//	state->UpdateEntities();
-	StateManager::GetInstance()->GetActiveState()
+	StateManager::GetInstance()->state
 		->UpdateEntities();
 	RenderEntities();
 
 	//for (auto const& state : StateManager::GetInstance()->GetStates())
 	//	state->AddPendingEntities();
-	StateManager::GetInstance()->GetActiveState()
+	StateManager::GetInstance()->state
 		->AddPendingEntities();
 
 	//We pool last delta and will pass it as GetTimeDelta - from game perspective it's more important that DT stays the same the whole frame, rather than be updated halfway through the frame
@@ -132,16 +132,16 @@ void GameEngineMain::RenderEntities()
 	//Render que
 	std::vector<RenderComponent*> renderers;
 	//Every entity that has RenderComponent, or a component that extends RenderComponent - should end up in a render que
-	for (auto const& state: StateManager::GetInstance()->GetStates())
-	{
-		for each (auto entity in state->entities)
+	//for (auto const& state: StateManager::GetInstance()->GetStates())
+	//{
+		for each (auto entity in StateManager::GetInstance()->state->entities)
 		{
 			if (RenderComponent* render = entity->GetComponent< RenderComponent >())
 			{
 				renderers.push_back(render);
 			}
 		}
-	}
+	//}
 
 	// sort using a lambda expression
 	// We sort entities according to their Z level, meaning that the ones with that value lower will be draw FIRST (background), and higher LAST (player)
@@ -159,5 +159,32 @@ void GameEngineMain::RenderEntities()
 	{
 		m_renderWindow->display();
 	}	
+}
+
+void GameEngineMain::InitGravity(sf::Vector2f center, double strength)
+{
+	gravityCenter.x = round(center.x * GameEngine::WINDOW_WIDTH);
+	gravityCenter.y = round(center.y * GameEngine::WINDOW_HEIGHT);
+	gravityStrength = strength;
+}
+
+
+sf::Vector2f GameEngineMain::GravityAt(sf::Vector2f pos)
+{
+	return sf::Vector2f(
+		(gravityCenter.x - pos.x) * gravityStrength,
+		(gravityCenter.y - pos.y) * gravityStrength
+	);
+}
+
+float GameEngineMain::ApplyFriction(float vel)
+{
+	return vel > 0
+		? vel - friction > 0
+			? -friction
+			: 0.0
+		: vel + friction < 0
+			? friction
+			: 0.0;
 }
 

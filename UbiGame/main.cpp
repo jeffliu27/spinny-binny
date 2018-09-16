@@ -7,13 +7,16 @@
 int main()
 {
 	GameEngine::GameEngineMain* mainEngine = GameEngine::GameEngineMain::GetInstance();
+	GameEngine::GameEngineMain::GetInstance()->InitGravity(sf::Vector2f(0.5, 0.5), 0.00001);
+	GameEngine::GameEngineMain::GetInstance()->InitFriction(0.001);
+	GameEngine::State* mainState = new Game::MainState();
 	GameEngine::StateManager::GetInstance()
-		->AddState(GameEngine::StateRef(new Game::MainState()));
+		->state = mainState;
 	while (mainEngine->GetRenderWindow()->isOpen())
 	{				
 		mainEngine->Update();
 	}
-
+	delete mainState;
 	delete mainEngine;
 	return 0;
 }
