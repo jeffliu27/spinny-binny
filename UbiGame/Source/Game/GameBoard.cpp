@@ -22,7 +22,7 @@ GameBoard::GameBoard()
 	GameEngine::StateManager::GetInstance()->state
 		->AddEntity(m_player);
 	m_player->SetPos(sf::Vector2f(50.f, 50.f));	
-	m_player->SetSize(sf::Vector2f(40.f, 40.f));
+	m_player->SetSize(sf::Vector2f(272.5f, 162.5f));
 	
 	CreateBackGround();
 	//Debug

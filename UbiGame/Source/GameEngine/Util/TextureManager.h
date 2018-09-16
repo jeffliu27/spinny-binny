@@ -16,6 +16,9 @@ namespace GameEngine
 			BG,
 			Particles,
 			Count,
+			Bin,
+			WhiteFork,
+			BlackFork,
 		};
 	}	
 
@@ -23,7 +26,7 @@ namespace GameEngine
 	{
 		switch (texture)
 		{
-		case eTexture::Player:    return "player.png";
+		case eTexture::Player:    return "Bin.png";
 		case eTexture::Tileset:   return "tileset.png";
 		case eTexture::BG:		  return "bg.png";
 		case eTexture::Particles: return "particles.png";
@@ -56,7 +59,7 @@ namespace TextureHelper
 	{
 		switch (texture)
 		{
-		case  GameEngine::eTexture::Player:  return sf::Vector2f(32.f, 32.f);
+		case  GameEngine::eTexture::Player:  return sf::Vector2f(109, 65);
 		case  GameEngine::eTexture::Tileset: return sf::Vector2f(32.f, 32.f);
 		case  GameEngine::eTexture::BG:	     return sf::Vector2f(500.f, 500.f);
 		case  GameEngine::eTexture::Particles: return sf::Vector2f(31.f, 32.f);
