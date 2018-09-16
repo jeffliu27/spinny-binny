@@ -139,8 +139,8 @@ void GameBoard::SpawnNewRandomTrash()
 	static int minTrashCount = 1;
 	static int maxTrashCount = 3;
 
-	static float minNextSpawnTime = 0.3f;
-	static float maxNextSpawnTime = 0.7f;
+	static float minNextSpawnTime = 0.8f;
+	static float maxNextSpawnTime = 1.5f;
 
 	static float leftTrashXPos = 60.f;
 	static float rightTrashXPos = 800.f;
@@ -157,11 +157,11 @@ void GameBoard::SpawnNewRandomTrash()
 
 		if (spawnOnLRSide) {
 			pos = sf::Vector2f((rand() > RAND_MAX / 2) ? leftTrashXPos : rightTrashXPos, MathHelpers::RandFloatIn(topTrashYPos, bottomTrashYPos));
-			size = sf::Vector2f(32.f, 32.f);
+			size = sf::Vector2f(50.f, 50.f);
 		}
 		else if (!spawnOnLRSide) {
 			pos = sf::Vector2f(MathHelpers::RandFloatIn(leftTrashXPos, rightTrashXPos), (rand() > RAND_MAX / 2) ? topTrashYPos : bottomTrashYPos);
-			size = sf::Vector2f(32.f, 32.f);
+			size = sf::Vector2f(50.f, 50.f);
 		}
 		SpawnNewProjectile(pos, size);
 	}
@@ -170,7 +170,8 @@ void GameBoard::SpawnNewRandomTrash()
 
 void GameBoard::SpawnNewProjectile(const sf::Vector2f& pos, const sf::Vector2f& size)
 {
-	ProjectileEntity* projectile = new ProjectileEntity();
+	int trashIndex = rand() % (12-4 + 1)+4;
+	ProjectileEntity* projectile = new ProjectileEntity(trashIndex);
 	GameEngine::StateManager::GetInstance()->state
 		->AddEntity(projectile);
 	projectile->SetPos(pos);

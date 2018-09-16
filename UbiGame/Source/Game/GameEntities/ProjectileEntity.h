@@ -10,12 +10,14 @@ namespace Game
 	{
 	public:
 		ProjectileEntity();
+		ProjectileEntity(int trashTypeIndex);
 		~ProjectileEntity();
 
 		virtual void OnAddToWorld() override;
 		virtual void OnRemoveFromWorld() override;
 		
 		double mass;
+
 	protected:
 		GameEngine::SpriteRenderComponent* m_renderComponent;
 		GameEngine::CollidablePhysicsComponent* m_physicsComponent;

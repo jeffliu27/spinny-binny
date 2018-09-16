@@ -15,10 +15,16 @@ namespace GameEngine
 			Tileset,
 			BG,
 			Particles,
-			Count,
-			Bin,
+			Apple,
 			WhiteFork,
 			BlackFork,
+			CleanJar,
+			DirtyJar,
+			CleanPaper,
+			DirtyPaper,
+			Coffee,
+			Bottle,
+			Count
 		};
 	}	
 
@@ -26,11 +32,20 @@ namespace GameEngine
 	{
 		switch (texture)
 		{
-		case eTexture::Player:    return "Bin.png";
-		case eTexture::Tileset:   return "tileset.png";
-		case eTexture::BG:		  return "bg.png";
-		case eTexture::Particles: return "particles.png";
-		default:       return "UnknownTexType";
+		case eTexture::Player:     return "Bin.png";
+		case eTexture::Tileset:    return "tileset.png";
+		case eTexture::BG:		   return "bg.png";
+		case eTexture::Particles:  return "particles.png";
+		case eTexture::Apple:      return "Apple.png";
+		case eTexture::WhiteFork:  return "Fork_White.png";
+		case eTexture::BlackFork:  return "Fork_Black.png";
+		case eTexture::CleanJar:   return "Jar_Clean.png";
+		case eTexture::DirtyJar:   return "Jar_Dirty.png";
+		case eTexture::CleanPaper: return "Paper_Clean.png";
+		case eTexture::DirtyPaper: return "Paper_Dirty.png";
+		case eTexture::Coffee:     return "Coffee.png";
+		case eTexture::Bottle:     return "Bottle.png";
+		default:               return "UnknownTexType";
 		}
 	}
 
@@ -60,9 +75,18 @@ namespace TextureHelper
 		switch (texture)
 		{
 		case  GameEngine::eTexture::Player:  return sf::Vector2f(219, 218);
-		case  GameEngine::eTexture::Tileset: return sf::Vector2f(50.f, 50.f);
+		case  GameEngine::eTexture::Tileset: return sf::Vector2f(32.f, 32.f);
 		case  GameEngine::eTexture::BG:	     return sf::Vector2f(800.f, 800.f);
 		case  GameEngine::eTexture::Particles: return sf::Vector2f(31.f, 32.f);
+		case  GameEngine::eTexture::Apple: return sf::Vector2f(50.f, 50.f);
+		case  GameEngine::eTexture::WhiteFork: return sf::Vector2f(50, 50);
+		case  GameEngine::eTexture::BlackFork: return sf::Vector2f(50, 50);
+		case  GameEngine::eTexture::CleanJar: return sf::Vector2f(50, 50);
+		case  GameEngine::eTexture::DirtyJar: return sf::Vector2f(50, 50);
+		case  GameEngine::eTexture::CleanPaper: return sf::Vector2f(50, 50);
+		case  GameEngine::eTexture::DirtyPaper: return sf::Vector2f(50, 50);
+		case  GameEngine::eTexture::Coffee: return sf::Vector2f(50, 50);
+		case  GameEngine::eTexture::Bottle: return sf::Vector2f(50, 50);
 		default:							 return sf::Vector2f(-1.f, -1.f);
 		}
 	}
