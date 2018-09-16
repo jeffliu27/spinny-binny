@@ -1,3 +1,4 @@
+#include "GameEngine/GameEngineMain.h"
 #include "MouseInputComponent.h"
 #include <iostream>
 using namespace GameEngine;
@@ -21,14 +22,13 @@ void MouseInputComponent::Update()
 {
 	__super::Update();
 
-	pos = sf::Mouse::getPosition();
+	pos = sf::Mouse::getPosition(*GameEngineMain::GetInstance()->GetWindow());
 	_leftPressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
 	_rightPressed = sf::Mouse::isButtonPressed(sf::Mouse::Right);
 	_middlePressed = sf::Mouse::isButtonPressed(sf::Mouse::Middle);
 
 	for (auto it = _callbacks.begin(); it != _callbacks.end(); ++it)
 	{
-		std::cout << pos.x << std::endl;
 		switch (it->first)
 		{
 		case NONE:

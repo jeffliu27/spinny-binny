@@ -8,6 +8,20 @@ RectButton::RectButton(int z)
 	m_mouseComponent = static_cast<GameEngine::MouseInputComponent*>(AddComponent<GameEngine::MouseInputComponent>());
 	m_textComponent = static_cast<GameEngine::TextComponent*>(AddComponent<GameEngine::TextComponent>());
 	m_textComponent->SetZLevel(z);
+
+	GetComponent<GameEngine::MouseInputComponent>()->AddCallback(GameEngine::ButtonType::NONE, wrap([&]()
+	{
+		if (PosInBounds(m_mouseComponent->pos)) {
+			std::cout << "hover" << std::endl;
+			m_textComponent->SetBackgroundColour(_hoverColour);
+		}
+		else
+			m_textComponent->SetBackgroundColour(_colour);
+	}));
+	GetComponent<GameEngine::MouseInputComponent>()->AddCallback(GameEngine::ButtonType::LEFT, wrap([&]()
+	{
+		if (PosInBounds(m_mouseComponent->pos)) _onClick();
+	}));
 }
 
 
@@ -17,26 +31,14 @@ RectButton::~RectButton()
 
 bool RectButton::PosInBounds(sf::Vector2i pos)
 {
-	return (GetPos().x + GetSize().x / 2 > pos.x && GetPos().x - GetSize().x / 2 < pos.x) &&
-		(GetPos().y + GetSize().y / 2 > pos.y && GetPos().y - GetSize().y / 2 < pos.y);
+	return (GetPos().x + GetSize().x / 2.f > pos.x && GetPos().x - GetSize().x / 2.f < pos.x) &&
+		(GetPos().y + GetSize().y / 2.f > pos.y && GetPos().y - GetSize().y / 2.f < pos.y);
 }
 
 void RectButton::OnAddToWorld()
 {
 	__super::OnAddToWorld();
-	GetComponent<GameEngine::MouseInputComponent>()->AddCallback(GameEngine::ButtonType::NONE, wrap([&] ()
-	{
-		std::cout << "MOVE" << std::endl;
-		if (PosInBounds(m_mouseComponent->pos))
-			m_textComponent->SetBackgroundColour(_hoverColour);
-		else
-			m_textComponent->SetBackgroundColour(_colour);
-	}));
-	GetComponent<GameEngine::MouseInputComponent>()->AddCallback(GameEngine::ButtonType::LEFT, wrap([&] ()
-	{
-		std::cout << "CLICK" << std::endl;
-		if (PosInBounds(m_mouseComponent->pos)) _onClick();
-	}));
+	
 }
 
 void RectButton::OnRemoveFromWorld()

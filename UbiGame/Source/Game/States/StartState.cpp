@@ -34,11 +34,10 @@ void StartState::Init()
 	restartBtn->SetSize(sf::Vector2f(200.f, 100.f));
 	restartBtn->SetOnClick([]()
 	{
-		std::cout << "GOING TO MAIN" << std::endl;
 		GameEngine::StateManager::GetInstance()->SwitchState(new Game::MainState());
 	});
 	restartBtn->SetText("PLAY NOW");
-	restartBtn->SetTextColour(sf::Color(50, 200, 20, 255));
+	restartBtn->SetTextColour(sf::Color(50, 50, 200, 255));
 	restartBtn->SetColour(sf::Color(0, 0, 0, 255));
 	restartBtn->SetHoverColour(sf::Color(200, 200, 200, 255));
 
