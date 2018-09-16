@@ -26,13 +26,12 @@ GameBoard::GameBoard()
 	GameEngine::StateManager::GetInstance()->state
 		->AddEntity(m_player);
 	m_player->SetPos(sf::Vector2f(GameEngine::WINDOW_WIDTH / 2.0, GameEngine::WINDOW_HEIGHT / 2.0));
-	m_player->SetSize(sf::Vector2f(272.5f, 162.5f));
+	m_player->SetSize(sf::Vector2f(219.0f, 218.0f));
 	
-	sf::String testString = "I hope this works.";
-	GameEngine::StateManager::GetInstance()->state->AddEntity(m_text);
-	m_text->SetPos(sf::Vector2f(400.f, 400.f));
-	m_text->SetSize(sf::Vector2f(272.5f, 162.5f));
-	//m_text->SetText(testString);
+	//sf::String testString = "I hope this works.";
+	//GameEngine::StateManager::GetInstance()->state->AddEntity(m_text);
+	//m_text->SetPos(sf::Vector2f(400.f, 400.f));
+	//m_text->SetSize(sf::Vector2f(272.5f, 162.5f));
 		
 
 	CreateBackGround();
@@ -139,39 +138,13 @@ void GameBoard::SpawnNewRandomProjectiles()
 }
 
 
-/* void GameBoard::SpawnNewRandomTiledObstacles()
-{
-	static int minObstacleCount = 2;
-	static int maxObstacleCount = 7;
-
-	static float minNextSpawnTime = 0.3f;
-	static float maxNextSpawnTime = 0.7f;
-
-	static float minObstacleXPos = 350.f;
-	static float maxObstacleXPos = 450.f;
-	static float minObstacleYPos = 20.f;
-	static float maxObstacleYPos = 450.f;
-
-	sf::Vector2f pos = sf::Vector2f(MathHelpers::RandFloatIn(minObstacleXPos, maxObstacleXPos), MathHelpers::RandFloatIn(minObstacleYPos, maxObstacleYPos));	
-	sf::Vector2f size = sf::Vector2f(32.f, 32.f);
-
-	int obstacleCount = (int)MathHelpers::RandFloatIn((float)minObstacleCount, (float)maxObstacleCount);
-	for (int a = 0; a < obstacleCount; ++a)
-	{
-		SpawnNewObstacle(pos, size);
-		pos.y += size.y;
-	}
-
-	m_lastObstacleSpawnTimer = MathHelpers::RandFloatIn(minNextSpawnTime, maxNextSpawnTime);
-} */
-
 void GameBoard::SpawnNewRandomTrash()
 {
 	static int minTrashCount = 1;
 	static int maxTrashCount = 3;
 
-	static float minNextSpawnTime = 0.3f;
-	static float maxNextSpawnTime = 0.7f;
+	static float minNextSpawnTime = 0.8f;
+	static float maxNextSpawnTime = 1.5f;
 
 	static float leftTrashXPos = 60.f;
 	static float rightTrashXPos = 800.f;
@@ -188,11 +161,11 @@ void GameBoard::SpawnNewRandomTrash()
 
 		if (spawnOnLRSide) {
 			pos = sf::Vector2f((rand() > RAND_MAX / 2) ? leftTrashXPos : rightTrashXPos, MathHelpers::RandFloatIn(topTrashYPos, bottomTrashYPos));
-			size = sf::Vector2f(32.f, 32.f);
+			size = sf::Vector2f(50.f, 50.f);
 		}
 		else if (!spawnOnLRSide) {
 			pos = sf::Vector2f(MathHelpers::RandFloatIn(leftTrashXPos, rightTrashXPos), (rand() > RAND_MAX / 2) ? topTrashYPos : bottomTrashYPos);
-			size = sf::Vector2f(32.f, 32.f);
+			size = sf::Vector2f(50.f, 50.f);
 		}
 		SpawnNewProjectile(pos, size);
 	}
@@ -201,7 +174,8 @@ void GameBoard::SpawnNewRandomTrash()
 
 void GameBoard::SpawnNewProjectile(const sf::Vector2f& pos, const sf::Vector2f& size)
 {
-	ProjectileEntity* projectile = new ProjectileEntity();
+	int trashIndex = rand() % (12-4 + 1)+4;
+	ProjectileEntity* projectile = new ProjectileEntity(trashIndex);
 	GameEngine::StateManager::GetInstance()->state
 		->AddEntity(projectile);
 	projectile->SetPos(pos);
@@ -216,10 +190,10 @@ void GameBoard::CreateBackGround()
 	GameEngine::Entity* bgEntity = new GameEngine::Entity();
 	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>
 		(bgEntity->AddComponent<GameEngine::SpriteRenderComponent>());
-	render->SetTexture(GameEngine::eTexture::Particles);
+	render->SetTexture(GameEngine::eTexture::BG);
 	render->SetZLevel(0);
-	bgEntity->SetPos(sf::Vector2f(250.f, 250.f));
-	bgEntity->SetSize(sf::Vector2f(500.f, 500.f));
+	bgEntity->SetPos(sf::Vector2f(400.f, 400.f));
+	bgEntity->SetSize(sf::Vector2f(800.f, 800.f));
 	GameEngine::StateManager::GetInstance()->state
 		->AddEntity(bgEntity);
 

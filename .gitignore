@@ -42,3 +42,10 @@ Ubigame.VC.db
 *.iobj
 *.ipdb
 *.vcxproj
+*.db
+*.opendb
+*.vcxproj
+*.vcxproj
+UbiGame/x64/Debug/vc140.idb
+UbiGame/x64/Debug/vc140.pdb
+x64/Debug/Spinny-binny.pdb

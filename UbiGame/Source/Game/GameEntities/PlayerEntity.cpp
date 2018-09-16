@@ -3,7 +3,7 @@
 #include "Game/GameComponents/PlayerSoundComponent.h"
 #include "Game/GameComponents/PlayerCameraComponent.h"
 
-#include "GameEngine/EntitySystem/Components/CollidablePhysicsComponent.h"
+#include "GameEngine/EntitySystem/Components/CollidableBinComponent.h"
 #include "GameEngine/EntitySystem/Components/ParticleEmitterComponent.h"
 #include "GameEngine/EntitySystem/Components/SoundComponent.h"
 #include "GameEngine/Util/AnimationManager.h"
@@ -24,20 +24,20 @@ PlayerEntity::PlayerEntity()
 	//m_animComponent = static_cast<GameEngine::AnimationComponent*>(AddComponent<GameEngine::AnimationComponent>());
 		
 	//Collisions
-	AddComponent<GameEngine::CollidablePhysicsComponent>();
-	GetComponent<GameEngine::CollidablePhysicsComponent>()->SetGravityUsage(false);
+	AddComponent<GameEngine::CollidableBinComponent>();
+	//GetComponent<GameEngine::CollidablePhysicsComponent>()->SetGravityUsage(false);
 	
 	//Particles
-	GameEngine::ParticleEmitterComponent* emitterComponent = static_cast<GameEngine::ParticleEmitterComponent*>(AddComponent<GameEngine::ParticleEmitterComponent>());
-	GameEngine::SParticleDefinition particleDef = GameEngine::SParticleDefinition(GameEngine::eTexture::Particles, 1, sf::Vector2f(32.f, 32.f), GameEngine::EAnimationId::Smoke, 1.f);
-	emitterComponent->SetParticleDefinition(particleDef);
+	//GameEngine::ParticleEmitterComponent* emitterComponent = static_cast<GameEngine::ParticleEmitterComponent*>(AddComponent<GameEngine::ParticleEmitterComponent>());
+	//GameEngine::SParticleDefinition particleDef = GameEngine::SParticleDefinition(GameEngine::eTexture::Particles, 1, sf::Vector2f(32.f, 32.f), GameEngine::EAnimationId::Smoke, 1.f);
+	//emitterComponent->SetParticleDefinition(particleDef);
 
 
 	//Sound
-	GameEngine::SoundComponent* const soundComponent = static_cast<GameEngine::SoundComponent*>(AddComponent<GameEngine::SoundComponent>());
-	soundComponent->SetNumSimultaneousSounds(2); // Hard coded 5 simultaneous sounds for the player
+	//GameEngine::SoundComponent* const soundComponent = static_cast<GameEngine::SoundComponent*>(AddComponent<GameEngine::SoundComponent>());
+	//soundComponent->SetNumSimultaneousSounds(2); // Hard coded 5 simultaneous sounds for the player
 												 
-	AddComponent<PlayerSoundComponent>();
+	//AddComponent<PlayerSoundComponent>();
 
 	//Camera control
 	AddComponent<PlayerCameraComponent>();

@@ -43,7 +43,7 @@ void State::RemovePendingEntities()
 		Entity* entity = _entitiesToRemove[a];
 
 		auto found = std::find(entities.begin(), entities.end(), entity);
-		assert(found != entities.end());
+		//assert(found != entities.end());
 
 		if (found != entities.end())
 		{

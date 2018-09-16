@@ -25,7 +25,8 @@ CollisionManager::~CollisionManager()
 void CollisionManager::RegisterCollidable(CollidableComponent* collidable)
 {
 	auto found = std::find(m_collidables.begin(), m_collidables.end(), collidable);
-	assert(found == m_collidables.end()); //Drop an assert if we add duplicate;
+
+	//assert(found == m_collidables.end()); //Drop an assert if we add duplicate;
 	if (found == m_collidables.end())
 	{
 		m_collidables.push_back(collidable);

@@ -40,7 +40,7 @@ void SpriteRenderComponent::UpdateSpriteParams()
 	sf::Vector2f textureSize = sf::Vector2f(texture->getSize());
 	if (TextureHelper::GetTextureTileSize(m_texture).x > 0.f)
 	{
-		textureSize = TextureHelper::GetTextureTileSize(m_texture);
+	 textureSize = TextureHelper::GetTextureTileSize(m_texture);
 	}
 
 	//We then use size of a tile, or size of a texture to figure out which part of the image do we draw as sprite
