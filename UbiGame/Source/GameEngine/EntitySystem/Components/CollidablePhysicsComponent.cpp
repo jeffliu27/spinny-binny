@@ -56,7 +56,7 @@ void CollidablePhysicsComponent::Update()
 	//For the time being just a simple intersection check that moves the entity out of all potential intersect boxes
 	std::vector<CollidableComponent*>& collidables = CollisionManager::GetInstance()->GetCollidables();
 
-	for (int a = 0; a < collidables.size(); ++a)
+	/*for (int a = 0; a < collidables.size(); ++a)
 	{
 		CollidableComponent* colComponent = collidables[a];
 		if (colComponent == this)
@@ -85,5 +85,5 @@ void CollidablePhysicsComponent::Update()
 
 			GetEntity()->SetPos(pos);
 		}
-	}
+	}*/
 }

@@ -3,7 +3,7 @@
 #include "Game/GameComponents/PlayerSoundComponent.h"
 #include "Game/GameComponents/PlayerCameraComponent.h"
 
-#include "GameEngine/EntitySystem/Components/CollidablePhysicsComponent.h"
+#include "GameEngine/EntitySystem/Components/CollidableBinComponent.h"
 #include "GameEngine/EntitySystem/Components/ParticleEmitterComponent.h"
 #include "GameEngine/EntitySystem/Components/SoundComponent.h"
 #include "GameEngine/Util/AnimationManager.h"
@@ -24,8 +24,8 @@ PlayerEntity::PlayerEntity()
 	//m_animComponent = static_cast<GameEngine::AnimationComponent*>(AddComponent<GameEngine::AnimationComponent>());
 		
 	//Collisions
-	AddComponent<GameEngine::CollidablePhysicsComponent>();
-	GetComponent<GameEngine::CollidablePhysicsComponent>()->SetGravityUsage(false);
+	AddComponent<GameEngine::CollidableBinComponent>();
+	//GetComponent<GameEngine::CollidablePhysicsComponent>()->SetGravityUsage(false);
 	
 	//Particles
 	GameEngine::ParticleEmitterComponent* emitterComponent = static_cast<GameEngine::ParticleEmitterComponent*>(AddComponent<GameEngine::ParticleEmitterComponent>());

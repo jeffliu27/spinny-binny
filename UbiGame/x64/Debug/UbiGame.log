@@ -1,31 +1,25 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(387,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (UbiGame.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  main.cpp
-  ProjectileEntity.cpp
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  ObstacleEntity.cpp
-  TextureManager.cpp
-  SoundManager.cpp
-  CollisionManager.cpp
-  CameraManager.cpp
-  AnimationManager.cpp
-  MathHelpers.cpp
-  Entity.cpp
-  SoundComponent.cpp
-  CollidableComponent.cpp
-  Component.cpp
-  UbiGame.vcxproj -> C:\Users\conra\spinny-binny\x64\Debug\Spinny-binny.exe
-  C:\Users\conra\spinny-binny\UbiGame\Resources\img\bg.png
-  C:\Users\conra\spinny-binny\UbiGame\Resources\img\Bin.png
-  C:\Users\conra\spinny-binny\UbiGame\Resources\img\Correct.png
-  C:\Users\conra\spinny-binny\UbiGame\Resources\img\Flappy.png
-  C:\Users\conra\spinny-binny\UbiGame\Resources\img\Fork_Black.png
-  C:\Users\conra\spinny-binny\UbiGame\Resources\img\Fork_White.png
-  C:\Users\conra\spinny-binny\UbiGame\Resources\img\particles.png
-  C:\Users\conra\spinny-binny\UbiGame\Resources\img\player.png
-  C:\Users\conra\spinny-binny\UbiGame\Resources\img\Spoon_Black.png
-  C:\Users\conra\spinny-binny\UbiGame\Resources\img\tileset.png
-  C:\Users\conra\spinny-binny\UbiGame\Resources\img\Wrong.png
-  C:\Users\conra\spinny-binny\UbiGame\Resources\snd\glassBreak.wav
-  C:\Users\conra\spinny-binny\UbiGame\Resources\snd\thunder.wav
-  13 File(s) copied
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (UbiGame.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  State.cpp
+  UbiGame.vcxproj -> C:\Users\Julian\spinny-binny\x64\Debug\Spinny-binny.exe
+  C:\Users\Julian\spinny-binny\UbiGame\Resources\Recycling.txt
+  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\Apple.png
+  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\bg.png
+  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\Bin-old.png
+  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\Bin.png
+  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\Bottle.png
+  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\Coffee.png
+  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\Correct.png
+  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\Flappy.png
+  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\Fork_Black.png
+  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\Fork_White.png
+  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\Jar_Clean.png
+  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\Jar_Dirty.png
+  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\Paper_Clean.png
+  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\Paper_Dirty.png
+  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\particles.png
+  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\player.png
+  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\tileset.png
+  C:\Users\Julian\spinny-binny\UbiGame\Resources\img\Wrong.png
+  C:\Users\Julian\spinny-binny\UbiGame\Resources\snd\glassBreak.wav
+  C:\Users\Julian\spinny-binny\UbiGame\Resources\snd\thunder.wav
+  21 File(s) copied

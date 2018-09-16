@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1C612ACF-48DE-480E-AE0D-6C444B86ABCF}</ProjectGuid>
     <RootNamespace>UbiGame</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
     <ProjectName>Spinny-binny</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -47,7 +47,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -139,6 +139,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\GameEngine\EntitySystem\Components\CollidableBinComponent.cpp" />
     <ClCompile Include="Source\GameEngine\EntitySystem\Components\TextComponent.cpp" />
     <ClCompile Include="Source\GameEngine\Util\State.cpp" />
     <ClCompile Include="Source\Game\States\GameOverState.cpp" />
@@ -171,6 +172,7 @@
     <ClCompile Include="Source\Game\GameEntities\TextEntity.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\GameEngine\EntitySystem\Components\CollidableBinComponent.h" />
     <ClInclude Include="Source\GameEngine\EntitySystem\Components\TextComponent.h" />
     <ClCompile Include="Source\GameEngine\Util\StateManager.cpp" />
     <ClCompile Include="Source\Game\States\StartState.cpp" />
